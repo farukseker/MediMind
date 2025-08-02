@@ -41,11 +41,13 @@
 <script setup>
 import { useNewMdcStore } from '@/stores/new_mdc_store.js'
 import { useLocaleRouter } from '~/composables/useLocaleRouter'
+import { usePushNotification } from '~/composables/usePushNotification';
+
+const { subscribe } = usePushNotification();
 const { go } = useLocaleRouter()
 const route = useRoute()
 const localePath = useLocalePath()
 const scheduleStore = useNewMdcStore()
-const isPathEqual = (path) => route.path === localePath(path) 
 
 const isUserAllowNotfication = ref(false)
 onMounted(async () => isUserAllowNotfication.value = Notification.permission === 'granted')
@@ -94,6 +96,18 @@ const go_new_medicine_form = () => {
   scheduleStore.resetForm()
   go('/new_medicine/medicine_name')
 }
+
+const handleSubscribe = async () => {
+  try {
+    await subscribe()
+    isUserAllowNotfication.value = Notification.permission === 'granted'
+  } finally {
+    if (Notification.permission === 'granted'){
+        await updateUserNotificationSettings()
+    }
+  }
+}
+
 
 useSeoMeta({
       title: 'İlaç Takip',

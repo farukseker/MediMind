@@ -136,8 +136,8 @@ const updateUserNotificationSettings = async () => {
 }
 
 watch(
-      () => settings.value.notifications_enabled,
-async (enabled) => {
+    () => settings.value.notifications_enabled,
+    async (enabled) => {
     if (enabled){
       await handleSubscribe()
     }

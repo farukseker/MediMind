@@ -30,18 +30,18 @@
 
 <script setup>
 import { faStopwatch, faTimeline, faTimes } from '@fortawesome/free-solid-svg-icons'
+import dayjs from 'dayjs'
 
 const props = defineProps(['medication'])
 const { $api } = useNuxtApp()
 const emit = defineEmits(['load_medication_list'])
 const on_progress = ref(false)
-import dayjs from 'dayjs' // Tarih işlemleri için kullanışlı
 
 const trigger = async () => {
     try{
-        const result = await emit('load_medication_list'); // Bu Promise'leri dizi olarak döner
+        const result = await emit('load_medication_list'); 
         if (result.length > 0) {
-            await result[0]; // ilk dönen Promise varsa beklet
+            await result[0];
             await nextTick()
         }
     } catch {} finally {
