@@ -1,6 +1,7 @@
 import time
 import requests
 
+
 class AutoJWTClient:
     def __init__(self, base_url, login_url, email, password, verify=True):
         self.base_url = base_url.rstrip("/")
