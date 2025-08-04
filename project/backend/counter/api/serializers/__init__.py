@@ -2,3 +2,5 @@ from .counter_status_serializer import CounterStatusCreateSerializer
 from .counter_entry_serializer import CounterEntrySerializer
 from .user_info_serializer import UserInfoSerializer
 from .daily_counter_serializer import DailyCounterSerializer
+
+from .counter_retrieve_update_destroy_serializer import CounterRetrieveUpdateDestroySerializer

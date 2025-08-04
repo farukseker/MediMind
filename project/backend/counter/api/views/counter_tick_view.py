@@ -6,5 +6,7 @@ from counter.models import CounterEntry
 
 class CounterTickCreateView(CreateAPIView):
     serializer_class = CounterEntrySerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [
+        IsAuthenticated
+    ]
     queryset = CounterEntry.objects.all()

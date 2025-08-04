@@ -2,3 +2,4 @@ from .counter_status_create_view import CounterListCreateView
 from .counter_tick_view import CounterTickCreateView
 from .daily_counter_list_view import DailyCounterListView
 
+from .counter_retrieve_update_destroy_view import CounterRetrieveUpdateDestroyView

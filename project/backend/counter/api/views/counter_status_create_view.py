@@ -13,9 +13,12 @@ class CounterListCreateView(ListCreateAPIView):
 
     def get_queryset(self):
         today = date.today()
-        return Counter.objects.filter(user=self.request.user).annotate(
-            count=Coalesce(Sum('entries__value'), Value(0)),
-            today_count=Coalesce(Sum('entries__value', filter=Q(entries__timestamp__date=today)), Value(0))
+        return (
+            Counter.objects.filter(user=self.request.user)
+            .annotate(
+                count=Coalesce(Sum('entries__value'), Value(0)),
+                today_count=Coalesce(Sum('entries__value', filter=Q(entries__timestamp__date=today)), Value(0))
+            )
         )
 
     def perform_create(self, serializer):
