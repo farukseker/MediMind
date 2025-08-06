@@ -51,5 +51,6 @@ class CounterRetrieveUpdateDestroySerializer(serializers.ModelSerializer):
 
     class Meta:
         model: Counter = Counter
-        fields: str = '__all__'
+        # fields: str = '__all__'
+        exclude: tuple[str] = 'user',
 

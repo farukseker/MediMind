@@ -10,3 +10,5 @@ class CounterRetrieveUpdateDestroyView(RetrieveUpdateDestroyAPIView):
     def get_queryset(self):
         return Counter.objects.filter(user=self.request.user)
 
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user, **serializer.validated_data)
