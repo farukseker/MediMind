@@ -63,7 +63,8 @@ class CounterEntryGroupedRetrieveDestroyListView(ListAPIView, DestroyAPIView):
         status_code = status.HTTP_400_BAD_REQUEST
         response_data = {}
 
-        if delete_index := self.kwargs.get("delete_index"):
+        delete_index = self.kwargs.get("delete_index")
+        if type(delete_index) is int and delete_index >= 0:
             status_code = status.HTTP_404_NOT_FOUND
 
             grouped_entries = self.get_grouped_entries_id_list()
