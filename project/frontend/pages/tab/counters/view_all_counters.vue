@@ -1,7 +1,7 @@
 <template>
 <div class="p-4 space-y-4 max-w-md mx-auto">
   <header class="flex border-b border-secondary">
-    <button class="btn btn-ghost text-2xl z-10">
+    <button class="btn btn-ghost text-xl z-10" @click="go('/tab/counters')">
       <font-awesome :icon="faArrowLeft" />
     </button>
     <div class="w-full flex absolute left-0">
@@ -12,8 +12,8 @@
     <ul class="flex flex-col gap-2">
         <li v-for="(counter, index) in counters_list">
             <div class="card border border-primary-content flex flex-row justify-between p-2 gap-2">
-                <div>
-                    <strong>{{ counter.name }}</strong>
+                <div class="min-w-[180px] max-w-[180px]">
+                    <strong class="truncate whitespace-nowrap overflow-hidden block">{{ counter.name }}</strong>
                     <p>
                         <span class="text-secondary-content text-sm">Sayım:</span><span class="text-secondary text-sm">{{ counter.count }}</span>
                     </p>
@@ -63,8 +63,6 @@ onMounted(async () => {
 
 const counter_tick = async (counter_index, value) => {
   try {
-    console.log(value)
-
     let counter_id = counters_list.value[counter_index].id
     counters_list.value[counter_index].is_progress = true
     await $api('/counter/tick/', {
