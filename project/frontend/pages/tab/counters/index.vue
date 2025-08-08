@@ -13,7 +13,7 @@
     <div class="flex w-full m-auto">
         <button 
             class="btn btn-ghost underline ms-auto"
-            @click="go('/tab/counters/edit_counter')"
+            @click="go('/tab/counters/view_all_counters')"
             >
             Tüm Sayaçlar
         </button>
@@ -62,4 +62,4 @@ onMounted(async () => {
     on_loading.value = false
   }
 })
-</script>
+</script> 

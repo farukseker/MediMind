@@ -1,6 +1,13 @@
 <template>
 <div class="p-4 space-y-4 max-w-md mx-auto">
-    <h2 class="text-secondary">Sayaçlar</h2>
+  <header class="flex border-b border-secondary">
+    <button class="btn btn-ghost text-2xl z-10">
+      <font-awesome :icon="faArrowLeft" />
+    </button>
+    <div class="w-full flex absolute left-0">
+      <h2 class="text-secondary text-2xl m-auto">Sayaçlar</h2>
+    </div>
+  </header>
   <article>
     <ul class="flex flex-col gap-2">
         <li v-for="(counter, index) in counters_list">
@@ -29,7 +36,7 @@
 
 <script setup>
 import { useLocaleRouter } from '~/composables/useLocaleRouter'
-import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons'
+import { faPlus, faMinus, faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 
 const { $api } = useNuxtApp()
 const { go } = useLocaleRouter()
