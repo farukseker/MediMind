@@ -2,8 +2,8 @@
 <section class="max-w-md mx-auto">
     <header class="flex bg-base-100 border-b border-primary p-4 sticky top-0 z-10 rounded-b-md shdow max-w-md mx-auto">
         <div 
-        @click="go('/new_medicine/medicine_plan')"
-        class="w-[36px] my-auto">
+        @click="go('/tab/counters/view_all_counters')"
+        class="w-[36px] my-auto z-10">
             <font-awesome :icon="faArrowLeft" />
         </div>
         <div class="w-full my-auto">Plan adı ve sırası </div>
@@ -88,12 +88,15 @@
 </template>
 
 <script setup>
-
+import { useLocaleRouter } from '~/composables/useLocaleRouter'
 import { faMinus, faArrowLeft, faPlus } from '@fortawesome/free-solid-svg-icons'
 import dayjs from 'dayjs'
-import { onMounted } from 'vue'
-const route = useRoute()
+
+
+const { go } = useLocaleRouter()
 const { $api } = useNuxtApp()
+
+const route = useRoute()
 
 const counter_data = ref(null)
 const counter_entries = ref([])
@@ -122,6 +125,13 @@ const loadCounterData = async () => {
 
 onMounted(loadCounterData)
 
+const primaryColor = ref('#00E396')
+
+onMounted(() => {
+  const rootStyles = getComputedStyle(document.documentElement)
+  const value = rootStyles.getPropertyValue('--color-primary').trim()
+  primaryColor.value = value
+})
 
 const series = computed(() => ([
   {
@@ -145,7 +155,7 @@ const chartOptions = computed(() => ({
     markers: {
         size: 4
     },
-    colors: ['#00E396'],
+    colors: [primaryColor.value],
     dataLabels: {
         enabled: true
     }

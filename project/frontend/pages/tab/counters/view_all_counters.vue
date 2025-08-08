@@ -25,7 +25,7 @@
                     <button :disabled="counter.is_progress" class="btn btn-sm btn-primary" @click="counter_tick(index, 1)"><font-awesome :icon="faPlus" /></button>
                     <button :disabled="counter.is_progress" class="btn btn-sm btn-error text-white" @click="counter_tick(index, -1)"><font-awesome :icon="faMinus" /></button>
                         <div class="w-full"></div>
-                    <button :disabled="counter.is_progress" class="btn btn-sm btn-secondary text-white">Edit</button>
+                    <button :disabled="counter.is_progress" class="btn btn-sm btn-secondary text-white" @click="go(`/tab/counters/edit-${counter.id}/`)">Edit</button>
                 </div>
             </div>
         </li>
