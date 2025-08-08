@@ -54,6 +54,9 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n',
   ],
 i18n: {
+  bundle: {
+    optimizeTranslationDirective: false
+  },
   locales: [
     { code: 'us', name: "English", language: 'en-US', file: 'en.json'},
     { code: 'tr', name: "Türkçe", language: 'tr-TR', file: 'tr.json'},
