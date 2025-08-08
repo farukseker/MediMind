@@ -4,3 +4,4 @@ from .daily_counter_list_view import DailyCounterListView
 
 from .counter_retrieve_update_destroy_view import CounterRetrieveUpdateDestroyView
 from .counter_entry_list_retrieve_update_destroy_view import CounterEntryGroupedRetrieveDestroyListView
+from .counter_entry_all_destroy_view import CounterEntryAllDestroyView
