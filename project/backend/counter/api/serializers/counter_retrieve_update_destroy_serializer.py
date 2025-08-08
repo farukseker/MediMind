@@ -13,7 +13,8 @@ class CounterRetrieveUpdateDestroySerializer(serializers.ModelSerializer):
 
     interval_count = serializers.SerializerMethodField()
 
-    def get_interval_count(self, obj: Counter):
+    @staticmethod
+    def get_interval_count(obj: Counter):
         today = date.today()
 
         match obj.split_type:
