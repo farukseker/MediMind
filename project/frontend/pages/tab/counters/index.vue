@@ -1,5 +1,5 @@
 <template>
-   <div class="p-4 space-y-4 max-w-md mx-auto">
+  <div class="p-4 space-y-4 max-w-md mx-auto">
   <headersMainHeader :title="$t('counter.title')">
       <div 
           @click="go('/new_counter')"
