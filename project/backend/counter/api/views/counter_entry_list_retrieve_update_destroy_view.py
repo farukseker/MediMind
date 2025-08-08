@@ -1,7 +1,8 @@
+from django.db.models.functions import Coalesce
 from rest_framework.generics import ListAPIView, get_object_or_404, DestroyAPIView
 from rest_framework.response import Response
 from rest_framework import status
-from django.db.models import Count
+from django.db.models import Count, Sum, Value
 from django.contrib.postgres.aggregates import ArrayAgg
 
 from counter.models import Counter, CounterEntry, CounterSplitType
@@ -34,7 +35,7 @@ class CounterEntryGroupedRetrieveDestroyListView(ListAPIView, DestroyAPIView):
             .filter(counter=counter)
             .annotate(date=trunc_function('timestamp'))
             .values('date')
-            .annotate(count=Count('id'))
+            .annotate(count=Coalesce(Sum('value'), Value(0)))
             .order_by('date')
         )
 
@@ -54,7 +55,7 @@ class CounterEntryGroupedRetrieveDestroyListView(ListAPIView, DestroyAPIView):
 
     @staticmethod
     def delete_entries_objects_from_id_list(entries_id_list: list[int]) -> int:
-        deleted_count, _ = CounterEntry.objects.filter(id__in=entry_ids).delete()
+        deleted_count, _ = CounterEntry.objects.filter(id__in=entries_id_list).delete()
         return deleted_count
 
     @override
@@ -65,7 +66,6 @@ class CounterEntryGroupedRetrieveDestroyListView(ListAPIView, DestroyAPIView):
         if delete_index := self.kwargs.get("delete_index"):
             status_code = status.HTTP_404_NOT_FOUND
 
-            counter: Counter = self.get_counter_obj()
             grouped_entries = self.get_grouped_entries_id_list()
 
             if (
