@@ -24,6 +24,7 @@
     "@vesp/nuxt-fontawesome": "^1.2.1",
     "@vite-pwa/nuxt": "^1.0.4",
     "@vueuse/motion": "^3.0.3",
+    "@vueuse/nuxt": "^13.6.0",
     "apexcharts": "^4.7.0",
     "axios": "^1.11.0",
     "better-sqlite3": "^11.10.0",

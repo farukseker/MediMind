@@ -17,6 +17,8 @@
         </div>
     </header>
 
+
+
     <section class="px-2">
         <fieldset class="w-full fieldset border-b-2 shadow-md border-base-300 rounded-box p-4 flex flex-col gap-2">
             <legend class="fieldset-legend font-bold">Sayaç bilgileri</legend>
@@ -65,11 +67,11 @@
         
         <fieldset class="w-full fieldset border-b-2 shadow-md border-base-300 rounded-box p-3 flex flex-row justify-around gap-2">
             <legend class="fieldset-legend font-bold">Kısayollar</legend>
-                <button :disabled="on_load_counter_data" @click="counter_tick(1)" class="btn btn-primary"><font-awesome :icon="faPlus"/></button>
-                <button :disabled="on_load_counter_data" @click="counter_tick(-1)" class="btn btn-secondary"><font-awesome :icon="faMinus"/></button>
+                <button :disabled="on_load_counter_data || on_count_tick" @click="counter_tick(1)" class="btn btn-primary"><font-awesome :icon="faPlus"/></button>
+                <button :disabled="on_load_counter_data || on_count_tick" @click="counter_tick(-1)" class="btn btn-secondary"><font-awesome :icon="faMinus"/></button>
                 <!-- class="w-full"></div> -->
-                <button :disabled="on_load_counter_data" class="btn btn-error">full reset</button>
-                <button :disabled="on_load_counter_data" class="btn btn-error">delete</button>
+                <button :disabled="on_load_counter_data" class="btn btn-error" @click="show_reset_confirmation = true">full reset</button>
+                <button :disabled="on_load_counter_data" class="btn btn-error" @click="show_delete_confirmation = true">delete</button>
         </fieldset>
 
         <fieldset v-if="counter_entries" class="w-full fieldset border-b-2 shadow-md border-base-300 rounded-box flex flex-col gap-2">
@@ -103,13 +105,41 @@
             </article>
         </fieldset>
     </section>
-
 </section>
+
+<CustomModal v-model="show_delete_confirmation">
+    <div class="py-2">
+        <font-awesome :icon="faWarning" />
+        <h2>Sayacı silmek istediğininzden emin misiniz</h2>
+        <p class="text-sm text-warning">Yapılan silme işlemi geri alınamamaktadır</p>
+    </div>
+    <div class="flex gap-2 mt-2">
+        <div class="w-full"></div>
+        <button class="btn btn-primary">Sil</button>
+        <button class="btn btn-neutral" @click="show_delete_confirmation = false">İptal</button>
+    </div>
+</CustomModal>
+
+
+<CustomModal v-model="show_reset_confirmation">
+    <div class="py-2">
+        <font-awesome :icon="faWarning" />
+        <h2>Sayacı sıfırlamak istediğininzden emin misiniz</h2>
+        <p class="text-sm text-warning">Yapılan sıfırlama işlemi geri alınamamaktadır</p>
+    </div>
+    <div class="flex gap-2 mt-2">
+        <div class="w-full"></div>
+        <button class="btn btn-primary" @click="counterReset">Sıfırla</button>
+        <button class="btn btn-neutral" @click="show_reset_confirmation = false">İptal</button>
+    </div>
+</CustomModal>
+
+
 </template>
 
 <script setup>
 import { useLocaleRouter } from '~/composables/useLocaleRouter'
-import { faMinus, faArrowLeft, faPlus } from '@fortawesome/free-solid-svg-icons'
+import { faMinus, faArrowLeft, faPlus, faWarning } from '@fortawesome/free-solid-svg-icons'
 import dayjs from 'dayjs'
 import { computed, onMounted } from 'vue'
 
@@ -132,6 +162,12 @@ const on_load_counter_data = ref(true)
 const on_load_counter_entries = ref(true)
 const on_count_tick = ref(false)
 const on_counter_save = ref(false)
+
+
+// MODALS
+
+const show_delete_confirmation = ref(false)
+const show_reset_confirmation = ref(false)
 
 const loadCounterData = async () => {
     let counter_id = route.params.counter_id
@@ -227,7 +263,7 @@ const saveCounter = async () => {
 const counter_tick = async (value) => {
   try {
     let counter_id = route.params.counter_id
-
+    on_count_tick.value = true
     await $api('/counter/tick/', {
       method: 'POST',
       body: {
@@ -245,6 +281,7 @@ const counter_tick = async (value) => {
   } catch (e) {
     console.error(e)
   } finally {
+    on_count_tick.value = false
     await loadCounterEntries()
   }
 }
@@ -253,5 +290,15 @@ const deleteEntriesRange = async (delete_index) => {
     let counter_id = route.params.counter_id
     await $api(`/counter/${counter_id}/entry/${delete_index}/`, {method:"DELETE"}) 
     await loadCounterEntries()
+}
+
+const deleteCounter = async () => {
+    let counter_id = route.params.counter_id
+    await $api(`/counter/${counter_id}/`)
+}
+
+const counterReset = async () => {
+    let counter_id = route.params.counter_id
+    await $api(`/counter/${counter_id}/entry/delete-all/`, {method:"DELETE"}) 
 }
 </script>
