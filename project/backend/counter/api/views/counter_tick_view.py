@@ -9,4 +9,5 @@ class CounterTickCreateView(CreateAPIView):
     permission_classes = [
         IsAuthenticated
     ]
-    queryset = CounterEntry.objects.all()
+    def get_queryset(self):
+        return CounterEntry.objects.filter(user=self.request.user)
