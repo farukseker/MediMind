@@ -19,7 +19,7 @@ export default defineNuxtConfig({
       enabled: true,
     },
   },
-  // plugins: [{ src: '~/plugins/registerServiceWorker.js', mode: 'client' }],
+  plugins: [{ src: '~/plugins/registerServiceWorker.js', mode: 'client' }],
   ssr: false,
     routeRules: {
     '/': {
