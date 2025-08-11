@@ -22,15 +22,16 @@ class DjangoLoader:
                 sys.path.append
             ]
         )
-        self.django_settings_module: str = kwargs.get(
-            "django_settings_module",
-            "config.settings.develop"
-        )
+
         self.allow_async: bool = kwargs.get(
             "allow_django_async",
             True
         ) 
-
+        self.settings_module = kwargs.get(
+            "settings_module",
+            "config.settings.develop"
+        ) 
+        
         self.__has_error: bool | None = None 
     
     def __set_django_dir(self):
@@ -38,8 +39,8 @@ class DjangoLoader:
             pather(str(self.backend_dir))
 
     def __set_django_settings_module(self):
-        os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.develop")
-        os.environ['DJANGO_SETTINGS_MODULE'] = 'config.settings.develop'
+        os.environ.setdefault("DJANGO_SETTINGS_MODULE", self.settings_module)
+        os.environ['DJANGO_SETTINGS_MODULE'] = self.settings_module
 
     def __set_async_for_django(self):
         os.environ["DJANGO_ALLOW_ASYNC_UNSAFE"] = 'true'
