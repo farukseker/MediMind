@@ -12,6 +12,8 @@ CORS_ALLOWED_ORIGINS = [
 
 ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS")
 
+CSRF_TRUSTED_ORIGINS: tuple[str] = env.list(CSRF_TRUSTED_ORIGINS)
+
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases

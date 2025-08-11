@@ -1,7 +1,7 @@
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.test import APITestCase, APIClient
-# from django.contrib.auth.models import User
 from custom_auth.models import  User
+
 
 class BaseAPITestCase(APITestCase):
     def setUp(self):
@@ -16,6 +16,7 @@ class BaseAPITestCase(APITestCase):
 
     def _authenticate_client(self, access_token):
         self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {access_token}')
+
 
 """
 # Example usage
