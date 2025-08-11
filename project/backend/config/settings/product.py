@@ -1,18 +1,11 @@
 from .base import *
 
-CSRF_TRUSTED_ORIGINS = [
-    f"http://{env('PRODUCT_HOST')}/",
-    f"http://{env('PRODUCT_API_HOST')}"
-]
 
-CORS_ALLOWED_ORIGINS = [
-    f"http://{env('PRODUCT_HOST')}/",
-    f"http://{env('PRODUCT_API_HOST')}"
-]
 
 ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS")
 
-CSRF_TRUSTED_ORIGINS: tuple[str] = env.list(CSRF_TRUSTED_ORIGINS)
+CORS_ALLOWED_ORIGINS = env.list("CSRF_TRUSTED_ORIGINS")
+CSRF_TRUSTED_ORIGINS: tuple[str] | None = env.list("CSRF_TRUSTED_ORIGINS")
 
 
 # Database

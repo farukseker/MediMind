@@ -13,12 +13,12 @@ services:
     networks:
       - my_network
     ports:
-      - 4001:5432
+      - 6001:5432
 
   redis:
     image: redis:alpine
     ports:
-      - 4002:6379
+      - 6002:6379
     networks:
       - my_network
 
@@ -30,7 +30,7 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: password_mongo
       MONGO_INITDB_DATABASE: medication_mongo
     ports:
-      - 4003:27017
+      - 6003:27017
     volumes:
       - mongo_data:/data/db
     networks:
