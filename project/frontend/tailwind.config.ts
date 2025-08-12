@@ -9,7 +9,15 @@ const config: Config = {
     './plugins/**/*.js',
     './nuxt.config.{js,ts}',
   ],
+  theme: {
+    extend: {
+      fontFamily: {
+        rosemary: ['Rosemary', 'sans-serif'],
+      },
+    },
+  },
   plugins: [daisyui({themes:'all'})],
+  
 }
 
 export default config;

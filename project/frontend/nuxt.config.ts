@@ -137,6 +137,7 @@ i18n: {
   },
   css: [
     '@/assets/css/tailwind.css',
+    '@/assets/css/fonts.css',
     'flag-icons/css/flag-icons.min.css'
   ],
   fontawesome: {
