@@ -55,7 +55,9 @@
             <SettingsButton @click="logout" btnStyle="btn btn-ghost text-error" :icon="faDoorOpen" title="Çıkış yap" />
         </fieldset>
     </article>
-    <p class="text-gray-400 text-xs font-semibold text-center">Version. V1.18.10</p>
+    <article class="w-full flex justify-center">
+        <a href="https://github.com/farukseker/MediMind/blob/main/project/verlog.md" target="_new" class="text-gray-400 text-xs font-semibold text-center mx-auto underline">Version. V0.01.01</a>
+    </article>
 </section>
 </template>
 

@@ -1,5 +1,15 @@
 # Versiyon Log
 
+## 0.01.01
+**Tarih:** 12.08.2025
+### Düzeltmeler
+DÜZELTİLDİ - Sayaç sıfırlandığında kapanmayan modal 
+DÜZELTİLDİ - Sayaç anasayfada tüm zamanların toplamını göstermekteydi aralık olarak değişildi (gün|hafta|ay|kesintisiz)
+DÜZELTİLDİ - Sayaç düzenleme sayfasında tamamen sayacı sildikten sonra sayaç sayfasında silinen sayacın verileri görünmeye devam ediyordu
+
+### Eklemeler
+Eklendi - Ayarlar sayfasına versiyon numarasına verlog.md referans verildi
+
 ## 0.01.00 – İlk Sürüm
 **Tarih:** 12.08.2025
 
