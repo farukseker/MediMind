@@ -115,7 +115,7 @@
     </div>
     <div class="flex gap-2 mt-2">
         <div class="w-full"></div>
-        <button class="btn btn-primary">Sil</button>
+        <button class="btn btn-primary" @click="deleteCounter">Sil</button>
         <button class="btn btn-neutral" @click="show_delete_confirmation = false">İptal</button>
     </div>
 </CustomModal>
@@ -294,11 +294,20 @@ const deleteEntriesRange = async (delete_index) => {
 
 const deleteCounter = async () => {
     let counter_id = route.params.counter_id
-    await $api(`/counter/${counter_id}/`)
+    try {
+        await $api(`/counter/${counter_id}/`, {method:"DELETE"})
+    } finally {
+        show_delete_confirmation.value = false
+        go('/tab/counters/view_all_counters')
+    }
 }
 
 const counterReset = async () => {
     let counter_id = route.params.counter_id
-    await $api(`/counter/${counter_id}/entry/delete-all/`, {method:"DELETE"}) 
+    try {
+        await $api(`/counter/${counter_id}/entry/delete-all/`, {method:"DELETE"}) 
+    } finally {
+        show_reset_confirmation.value = false
+    }
 }
 </script>
