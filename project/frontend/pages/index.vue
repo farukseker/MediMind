@@ -18,10 +18,12 @@
         Bİldirim alabilmek için, <span class="font-bold underline">izin vermelisiniz</span>
     </article>
 
-    <div v-if="on_loading" class="w-full text-center">
+    <StatusWeeklyStatus v-if="stats" :stats="stats" />
+
+    <article v-if="on_loading" class="w-full text-center">
       <span class="loading loading-infinity loading-md"></span>
-    </div>
-    <div v-else class="space-y-3 max-h-[40vh] overflow-y-auto py-4">
+    </article>
+    <article v-else class="space-y-3 max-h-[40vh] overflow-y-auto py-4 my-4">
       <MedicationPillReminder
         v-if="medication_today_list.length > 0"
         v-for="medication_today in medication_today_list"
@@ -32,8 +34,8 @@
         />
       <AlertsTakedAllPills v-else-if="stats?.taken_percentage == 100" />
       <AlertsPillsNotfound v-else />
-    </div>
-    <StatusWeeklyStatus v-if="stats" :stats="stats" />
+    </article>
+
   </section>
 </div>
 </template>
