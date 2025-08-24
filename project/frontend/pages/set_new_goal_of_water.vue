@@ -29,7 +29,9 @@
       <!-- Hesapla Butonu -->
       <button class="btn btn-primary w-full" @click="handleCalculate">Günlük ihtiyacı hesapla</button>
 
-      <form @submit.prevent="saveTarget">
+      <hr class="bg-base">
+
+      <form @submit.prevent="saveTarget" class="mt-2 flex flex-col gap-4">
         <!-- Hedef Girişi -->
         <div>
           <label class="block mb-1 font-semibold">Günlük hedefiniz (mililitre)</label>
@@ -37,7 +39,7 @@
         </div>
 
         <!-- Kaydet Butonu -->
-        <button class="btn btn-success w-full" @click="saveTarget">Kaydet</button>
+        <button class="btn btn-success w-full" type="submit">Kaydet</button>
       </form>
     </article>
   </section>
