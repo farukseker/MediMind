@@ -19,7 +19,11 @@
                 @click="$emit('do_plan_exist_medication', medication.id)"
                 class="btn btn-primary btn-sm"
                 >{{ $t('medication_item.plan') }}</button>
-                <button class="btn btn-secondary btn-sm" @click="take_mdicine">{{ $t('medication_item.take') }}</button>
+                <button class="btn btn-secondary btn-sm" @click="take_mdicine">
+                    <span v-if="!on_take">{{ $t('medication_item.take') }}</span>
+                    <span v-else class="loading loading-spinner loading-sm"></span>
+
+                </button>
                 <button class="btn btn-success btn-sm" @click="$emit('update_exist_medication', medication.id)">{{ $t('medication_item.edit') }}</button>
                 <button class="btn btn-outline btn-sm" @click="delete_mdicine(medication.id)">{{ $t('medication_item.del') }}</button>
             </div>
@@ -37,6 +41,8 @@ const { $api } = useNuxtApp()
 const emit = defineEmits(['load_medication_list'])
 const on_progress = ref(false)
 
+const on_take = ref(false)
+
 const trigger = async () => {
     try{
         const result = await emit('load_medication_list'); 
@@ -51,6 +57,7 @@ const trigger = async () => {
 
 const take_mdicine = async () => {
     try {
+        on_take.value = true
         await $api('/medication/medication-logs/create/', {
             method: 'POST',
             body: {
@@ -61,6 +68,7 @@ const take_mdicine = async () => {
         })
     } catch {} finally {
         await trigger()
+        on_take.value = false
         on_progress.value = false
     }
 }
