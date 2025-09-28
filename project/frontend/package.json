@@ -26,7 +26,7 @@
     "@vueuse/motion": "^3.0.3",
     "@vueuse/nuxt": "^13.6.0",
     "apexcharts": "^4.7.0",
-    "axios": "^1.11.0",
+    "axios": "^1.12.2",
     "better-sqlite3": "^11.10.0",
     "dayjs": "^1.11.13",
     "debug": "^4.4.1",
