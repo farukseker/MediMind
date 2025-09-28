@@ -28,6 +28,7 @@ redis = "^6.2.0"
 django-celery-beat = "^2.8.1"
 pywebpush = "^2.0.3"
 django-sslserver = "^0.22"
+python-dotenv = "^1.1.1"
 
 
 [build-system]
