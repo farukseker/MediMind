@@ -8,7 +8,7 @@ Karmaşık senaryoları desteklemek için tasarlandı: farklı dozlar, değişke
 - Geliştirme süreci : devam ediyor
 
 
-![Mockup](.previews/Mockup.png)
+![Mockup](https://go.farukseker.com.tr/r/medimind-banner)
 
 ---
 
