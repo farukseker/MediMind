@@ -9,5 +9,5 @@ There may be other solutions, but the solution was quite sufficient to save time
 
 if __name__ == '__main__':
     from runner import celery_runner
-    celery_runner('poetry run celery -A config.celery beat --loglevel=info')
+    celery_runner('uv run celery -A config.celery beat --loglevel=info')
     # celery_runner('celery -A config beat -l info')

@@ -3,6 +3,7 @@
 import os
 import sys
 
+import patches
 
 def main():
     """Run administrative tasks."""

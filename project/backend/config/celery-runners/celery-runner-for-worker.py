@@ -9,4 +9,4 @@ There may be other solutions, but the solution was quite sufficient to save time
 
 if __name__ == '__main__':
     from runner import celery_runner
-    celery_runner('poetry run celery -A config worker --loglevel=info --concurrency=4 -P threads')
+    celery_runner('uv run celery -A config worker --loglevel=info --concurrency=4 -P threads')
