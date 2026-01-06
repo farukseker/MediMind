@@ -214,6 +214,7 @@ version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
     { name = "celery" },
+    { name = "celery-types" },
     { name = "django" },
     { name = "django-allauth" },
     { name = "django-celery-beat" },
@@ -234,6 +235,7 @@ dependencies = [
 [package.metadata]
 requires-dist = [
     { name = "celery", specifier = ">=5.6.1" },
+    { name = "celery-types", specifier = "==0.24.0" },
     { name = "django", specifier = ">=5.2.9" },
     { name = "django-allauth", specifier = ">=65.13.1" },
     { name = "django-celery-beat", specifier = ">=2.8.1" },
@@ -308,6 +310,18 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/e2/1b/b9bbe49b1f799d0ee3de91c66e6b61d095139721f5a2ae25585f49d7c7a9/celery-5.6.1.tar.gz", hash = "sha256:bdc9e02b1480dd137f2df392358c3e94bb623d4f47ae1bc0a7dc5821c90089c7", size = 1716388, upload-time = "2025-12-29T21:48:50.805Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/87/b1/7b7d1e0bc2a3f7ee01576008e3c943f3f23a56809b63f4140ddc96f201c1/celery-5.6.1-py3-none-any.whl", hash = "sha256:ee87aa14d344c655fe83bfc44b2c93bbb7cba39ae11e58b88279523506159d44", size = 445358, upload-time = "2025-12-29T21:48:48.894Z" },
+]
+
+[[package]]
+name = "celery-types"
+version = "0.24.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "typing-extensions" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/72/25/2276a1f00f8ab9fc88128c939333933a24db7df1d75aa57ecc27b7dd3a22/celery_types-0.24.0.tar.gz", hash = "sha256:c93fbcd0b04a9e9c2f55d5540aca4aa1ea4cc06a870c0c8dee5062fdd59663fe", size = 33148, upload-time = "2025-12-23T17:16:30.847Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/3a/7e/3252cba5f5c9a65a3f52a69734d8e51e023db8981022b503e8183cf0225e/celery_types-0.24.0-py3-none-any.whl", hash = "sha256:a21e04681e68719a208335e556a79909da4be9c5e0d6d2fd0dd4c5615954b3fd", size = 60473, upload-time = "2025-12-23T17:16:29.89Z" },
 ]
 
 [[package]]
