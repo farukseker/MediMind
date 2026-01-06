@@ -24,13 +24,7 @@
         </div>
 
         <div class="relative overflow-hidden py-4 sm:p-4 mx-auto">
-            <transition
-            :name="transitionName"
-            mode="out-in"
-            class="px-1"
-            >
-                <slot />
-            </transition>
+            <slot />
         </div>
     </div>
     <NavBottomNav />

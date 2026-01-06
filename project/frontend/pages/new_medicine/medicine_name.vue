@@ -1,5 +1,6 @@
 <template>
 <section class="flex flex-col gap-4">
+    inner
     <fieldset class="w-full fieldset border-b-2 shadow card border-base-300 rounded-box p-4">
         <legend class="fieldset-legend font-bold">Tara</legend>
     </fieldset>
