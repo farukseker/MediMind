@@ -1,6 +1,6 @@
 from .base import *
 
-
+DEBUG = False # force off $temp
 
 ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS")
 
