@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.core.validators import MinValueValidator
-from django.db.models import CheckConstraint, Q
+from django.db.models import Q
 from django.utils import timezone
 from rest_framework.exceptions import ValidationError
 
@@ -17,8 +17,12 @@ class WeightEntry(models.Model):
         unique_together = ['user', 'date']
         ordering = ['-date']
         constraints = [
-            CheckConstraint(check=Q(weight__gt=0), name="weight_positive")
+            models.CheckConstraint(
+                condition=Q(weight__gt=0),
+                name="weight_positive",
+            )
         ]
+
 
     def clean(self):
         if self.date and self.date > timezone.now().date():
